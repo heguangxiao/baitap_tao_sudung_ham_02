@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="button" id="btap1" value="Bai Tap 1 !" onclick="btap1();"/><br/>
+<input type="button" id="btap2" value="Bai Tap 2 !" onclick="btap2();"/><br/>
+<input type="button" id="btap3" value="Bai Tap 3 !" onclick="btap3();"/><br/>
+<input type="button" id="btap4" value="Bai Tap 4 !" onclick="btap4();"/><br/>
+<input type="button" id="btap5" value="Bai Tap 5 !" onclick="btap5();"/><br/>
+<input type="button" id="btap6" value="Bai Tap 6 !" onclick="btap6();"/><br/>
+<input type="button" id="btap7" value="Bai Tap 7 !" onclick="btap7();"/><br/>
+<input type="button" id="btap8" value="Bai Tap 8 !" onclick="btap8();"/><br/>
+<input type="button" id="btap9" value="Bai Tap 9 !" onclick="btap9();"/><br/>
+
+
+<div id="showMessage"></div>
+
+<script>
+
+    let showDiv = document.getElementById('showMessage');
+    let PI = 3.14;
+    let arrNumber = [0,1,2,3,4,5,6,7,8,9];
+    let showMessageDiv = '';
+
+    function btap9() {
+        let arrBtap9 = inputArr();
+        let kitu = inputNumA();
+        showMessageDiv = arrBtap9.join('-') +'<br>'+kitu+'<br>'+checkKituInArr(arrBtap9,kitu);
+        showDiv.innerHTML = showMessageDiv;
+    }
+    
+    function checkKituInArr(a, b) {
+        let dem = 0;
+
+        for (i = 0; i < a.length; i++) {
+            if (b == a[i]){
+                dem +=1;
+            }
+        }
+
+        if (dem>0){
+            return dem;
+        } else {
+            return dem-1;
+        }
+    }
+
+    function inputArr() {
+        let num = inputNumA();
+        let arr = [];
+        for (i = 0; i < num; i++) {
+            arr.push(inputNumA());
+        }
+        return arr;
+    }
+
+    function btap8() {
+        let arrBtap8 = [];
+        let numArr = parseInt(prompt('',0));
+
+        for (i = 0; i < numArr; i++) {
+            arrBtap8.push(inputNumA());
+        }
+
+        showMessageDiv += arrBtap8.join('--')+'<br>'+daonguocmang(arrBtap8).join('--');
+
+        showDiv.innerHTML = showMessageDiv;
+    }
+
+    function btap7() {
+        let arrBtap7 =[];
+
+        for (i = 0; i < 2; i++) {
+            arrBtap7.push(inputNumA());
+        }
+
+        showMessageDiv += arrBtap7.join('--') + '<br>';
+
+        arrBtap7.reverse();
+
+        showMessageDiv += arrBtap7.join('--');
+
+        showDiv.innerHTML = showMessageDiv;
+    }
+    
+    function daonguocmang(a) {
+        a.reverse();
+        return a;
+    }
+
+
+    function inputNumA() {
+        let numA = parseInt(prompt('',0));
+        return numA;
+    }
+
+    function btap6() {
+        let numA = parseInt(prompt('Nhap vao 1 so nguyen ',0));
+        if(checksonguyenduong(numA)){
+            showDiv.innerHTML = numA+' la mot so nguyen duong .';
+        }else{
+            showDiv.innerHTML = numA+' khong phai la 1 so nguyen duong';
+        }
+    }
+
+    function checksonguyenduong(a) {
+        a = parseInt(a);
+        if (a>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    function btap5() {
+        let numA = prompt('',0);
+        let numB = prompt('',0);
+        let numC = prompt('',0);
+        showDiv.innerHTML = 'Trong 3 so : '+numA+' , '+numB+' va '+numC+' <br> So lon nhat la : '+sosanh3songuyen(numA,numB,numC);
+    }
+    
+    function sosanh3songuyen( a, b, c) {
+        a = parseInt(a);
+        b = parseInt(b);
+        c = parseInt(c);
+        let temp = a;
+        if(b>a && b>c){
+            temp = b;
+        } else if (c>a && c>b){
+            temp = c;
+        }
+        return temp;
+    }
+    
+    function btap4() {
+        let inputAlert = prompt('Nhap 1 ky tu bat ky');
+
+        if (checkNumberOrString(inputAlert)) {
+            showDiv.innerHTML = 'Day la ki tu so';
+        } else {
+            showDiv.innerHTML = 'Day ko phai ki tu so';
+        }
+    }
+    
+    function checkNumberOrString(a) {
+        flag = false;
+        for (i = 0; i < arrNumber.length; i++) {
+            if(parseInt(a) == arrNumber[i]){
+                flag = true;
+                break
+            }
+        }
+        return flag;
+    }
+
+    function btap3() {
+        let numA = parseInt(prompt('',0));
+        showDiv.innerHTML = '!'+numA+' = '+giaithua(numA);
+    }
+
+    function giaithua(a) {
+        a = parseInt(a);
+        for (i=(a-1);i>0;i--){
+            a = a*i;
+        }
+        return a;
+    }
+
+    function btap2() {
+        let numA = parseInt(prompt('Nhap duong kinh hinh tron ban muon tinh',0));
+        showDiv.innerHTML = 'Duong kinh = '+numA+'<br>'+'Chu vi = '+chuvihinhtron(numA)+'<br>'+'Dien tich = '+dientichhinhtron(numA);
+    }
+
+    function dientichhinhtron(a) {
+        a = parseInt(a);
+        return (a/2)*(a/2)*PI;
+    }
+    
+    function chuvihinhtron(a) {
+        a = parseInt(a);
+        return a*PI;
+    }
+
+    function btap1() {
+        let numA = parseInt(prompt('',0));
+        showDiv.innerHTML = numA+' binh phuong bang '+binhphuong(numA);
+    }
+
+    function binhphuong(a) {
+        a = parseInt(a);
+        return a*a;
+    }
+</script>
+
+</body>
+</html>
